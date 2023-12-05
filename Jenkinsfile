@@ -18,6 +18,17 @@ pipeline{
                 git branch: 'master', url: 'https://github.com/chaudharysurya14/Netflix_CICD_Project.git'
             }
         }
+        stage ('Software Composition Analysis') {
+            steps {
+            echo '============================== DEPENDENCY CHECK =============================='
+            dependencyCheck additionalArguments: ''' 
+                -o "./" 
+                -s "./"
+                -f "ALL" 
+                --prettyPrint''', odcInstallation: 'Owasp-DC'
+            dependencyCheckPublisher pattern: 'dependency-check-report.xml'
+           }
+        }
         // stage("Sonarqube Analysis "){
         //     steps{
         //         withSonarQubeEnv('sonar-server') {
