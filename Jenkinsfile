@@ -20,14 +20,9 @@ pipeline{
         }
         stage ('Software Composition Analysis') {
             steps {
-            echo '============================== DEPENDENCY CHECK =============================='
-            dependencyCheck additionalArguments: ''' 
-                -o "./" 
-                -s "./"
-                -f "ALL" 
-                --prettyPrint''', odcInstallation: 'Owasp-DC'
-            dependencyCheckPublisher pattern: 'dependency-check-report.xml'
-           }
+                dependencyCheck additionalArguments: '--scan ./ --disableYarnAudit --disableNodeAudit', odcInstallation: 'Owasp-DC'
+                dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
+            }
         }
         // stage("Sonarqube Analysis "){
         //     steps{
