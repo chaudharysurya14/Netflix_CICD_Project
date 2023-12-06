@@ -44,9 +44,10 @@ pipeline{
             steps{
                 echo '============================== STATIC ANALYSIS =============================='
                 withSonarQubeEnv('sonarqube') {
-                    sh '''${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=Portfolio_CICD_Project \
-                    -Dsonar.projectName=Portfolio_CICD_Project \ 
-                    -Dsonar.java.checkstyle.reportPaths=target/checkstyle-result.xml'''
+                    sh 'mvn clean sonar:sonar -Dsonar.javabinaries=src -Dsonar.projectName=Netflix' 
+                    // sh '''${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=Portfolio_CICD_Project \
+                    // -Dsonar.projectName=Portfolio_CICD_Project \ 
+                    // -Dsonar.java.checkstyle.reportPaths=target/checkstyle-result.xml'''
                 }
             }
         }
