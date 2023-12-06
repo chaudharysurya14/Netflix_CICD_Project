@@ -61,9 +61,9 @@ pipeline{
                 }
             } 
         }
-        stage('TRIVY FS SCAN') {
+        stage('TRIVY FILES SCAN') {
             steps {
-                echo '============================== FILE SCANNING =============================='
+                echo '============================== TRIVY FILE SCANNING =============================='
                 sh "trivy fs . > trivyfs.txt"
             }
         }
@@ -79,7 +79,7 @@ pipeline{
         }
         stage("Docker push"){
             steps{
-                echo '============================== DOCKER BUILD =============================='
+                echo '============================== DOCKER PUSH =============================='
                 script{
                    withDockerRegistry(credentialsId: 'docker_credentials', toolName: 'ocker_cred'){   
                        sh "docker tag netflix surya0010/netflix:$BUILD_ID"
@@ -88,17 +88,32 @@ pipeline{
                 }
             }
         }
+        stage("TRIVY IMAGE SCAN"){
+            steps{
+                echo '============================== TRIVY IMAGE SCANNING =============================='
+                sh "trivy image surya0010/netflix:latest > trivyimage.txt" 
+            }
+        }
         stage('Deploy to container'){
             steps{
+                echo '============================== DEPLOY ON DOCKER =============================='
                 sh "docker run -d --name netflix -p 8081:80 surya0010/netflix:$BUILD_ID"
             }
         }
-        stage("TRIVY"){
+        stage('Deploy to kubernets'){
             steps{
-                echo '============================== IMAGE SCANNING =============================='
-                sh "trivy image surya0010/netflix:latest > trivyimage.txt" 
+                echo '============================== DEPLOY ON K8s =============================='
+                script{
+                    dir('Kubernetes') {
+                        withKubeConfig(caCertificate: '', clusterName: '', contextName: '', credentialsId: 'k8s', namespace: '', restrictKubeConfigAccess: false, serverUrl: '') {
+                                sh 'kubectl apply -f deployment.yml'
+                                sh 'kubectl apply -f service.yml'
+                        }   
+                    }
+                }
             }
-        }        
+        }
+        
     }
     post {
      always {
