@@ -10,7 +10,7 @@ pipeline{
     // defining sonarqube server
     SONAR_SERVER = 'sonarqube'
     }
-    // stages {
+    stages {
     //     stage('clean workspace'){
     //         steps{
     //             echo '============================== CLEAN WORKSHOP =============================='
