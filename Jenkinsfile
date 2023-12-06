@@ -6,7 +6,7 @@ pipeline{
     }
     environment {
     // defining sonarqube enviroment
-    SONAR_SCANNER = 'SonarQube-Scanner'
+    SCANNER_HOME=tool 'SonarQube-Scanner'
     // defining sonarqube server
     SONAR_SERVER = 'sonarqube'
     }
