@@ -10,19 +10,19 @@ pipeline{
     // defining sonarqube server
     SONAR_SERVER = 'sonarqube'
     }
-    stages {
-        stage('clean workspace'){
-            steps{
-                echo '============================== CLEAN WORKSHOP =============================='
-                cleanWs()
-            }
-        }
-        stage('Checkout from Git'){
-            steps{
-                echo '============================== GIT CHECKOUT =============================='
-                git branch: 'master', url: 'https://github.com/chaudharysurya14/Netflix_CICD_Project.git'
-            }
-        }
+    // stages {
+    //     stage('clean workspace'){
+    //         steps{
+    //             echo '============================== CLEAN WORKSHOP =============================='
+    //             cleanWs()
+    //         }
+    //     }
+    //     stage('Checkout from Git'){
+    //         steps{
+    //             echo '============================== GIT CHECKOUT =============================='
+    //             git branch: 'master', url: 'https://github.com/chaudharysurya14/Netflix_CICD_Project.git'
+    //         }
+    //     }
         stage ('Software Composition Analysis') {
             steps {
                 echo '============================== DEPENDENCY CHECK =============================='
@@ -34,25 +34,25 @@ pipeline{
                 dependencyCheckPublisher pattern: 'dependency-check-report.xml'
             }
         }
-        stage('Install Dependencies') {
-            steps {
-                echo '============================== INSTALL DEPENDENCY =============================='
-                sh "npm install"
-            }
-        }
-        stage("Sonarqube Analysis "){
-            steps{
-                echo '============================== STATIC ANALYSIS =============================='
-                withSonarQubeEnv('sonarqube') {
-                    sh ''' $SCANNER_HOME/bin/sonar-scanner -Dsonar.projectName=Netflix \
-                    -Dsonar.projectKey=Netflix '''
-                    // sh 'mvn clean sonar:sonar -Dsonar.javabinaries=src -Dsonar.projectName=Netflix' 
-                    // sh '''${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=Portfolio_CICD_Project \
-                    // -Dsonar.projectName=Portfolio_CICD_Project \ 
-                    // -Dsonar.java.checkstyle.reportPaths=target/checkstyle-result.xml'''
-                }
-            }
-        }
+        // stage('Install Dependencies') {
+        //     steps {
+        //         echo '============================== INSTALL DEPENDENCY =============================='
+        //         sh "npm install"
+        //     }
+        // }
+        // stage("Sonarqube Analysis "){
+        //     steps{
+        //         echo '============================== STATIC ANALYSIS =============================='
+        //         withSonarQubeEnv('sonarqube') {
+        //             sh ''' $SCANNER_HOME/bin/sonar-scanner -Dsonar.projectName=Netflix \
+        //             -Dsonar.projectKey=Netflix '''
+        //             // sh 'mvn clean sonar:sonar -Dsonar.javabinaries=src -Dsonar.projectName=Netflix' 
+        //             // sh '''${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=Portfolio_CICD_Project \
+        //             // -Dsonar.projectName=Portfolio_CICD_Project \ 
+        //             // -Dsonar.java.checkstyle.reportPaths=target/checkstyle-result.xml'''
+        //         }
+        //     }
+        // }
         // stage("quality gate"){
         //    steps {
         //         echo '============================== CHECK SONARQUBE QUALITY =============================='
@@ -61,6 +61,11 @@ pipeline{
         //         }
         //     } 
         // }
+        stage('TRIVY FS SCAN') {
+            steps {
+                sh "trivy fs . > trivyfs.txt"
+            }
+        }
         stage("Docker Build & Push"){
             steps{
                 echo '============================== DOCKER BUILD & PUSH =============================='
