@@ -63,17 +63,27 @@ pipeline{
         }
         stage('TRIVY FS SCAN') {
             steps {
+                echo '============================== FILE SCANNING =============================='
                 sh "trivy fs . > trivyfs.txt"
             }
         }
-        stage("Docker Build & Push"){
+        stage("Docker Build"){
             steps{
-                echo '============================== DOCKER BUILD & PUSH =============================='
+                echo '============================== DOCKER BUILD =============================='
+                script{
+                    withDockerRegistry(credentialsId: 'docker_credentials', toolName: 'ocker_cred'){   
+                        sh "docker build --build-arg TMDB_V3_API_KEY=3ad796c963c27c26487ac7d944e24532 -t netflix ."
+                    }
+                }
+            }
+        }
+        stage("Docker push"){
+            steps{
+                echo '============================== DOCKER BUILD =============================='
                 script{
                    withDockerRegistry(credentialsId: 'docker_credentials', toolName: 'ocker_cred'){   
-                       sh "docker build --build-arg TMDB_V3_API_KEY=3ad796c963c27c26487ac7d944e24532 -t netflix ."
-                       sh "docker tag netflix surya0010/netflix:latest"
-                       sh "docker push surya0010/netflix:latest"
+                       sh "docker tag netflix surya0010/netflix:$BUILD_ID"
+                       sh "docker push surya0010/netflix:$BUILD_ID"
                     }
                 }
             }
