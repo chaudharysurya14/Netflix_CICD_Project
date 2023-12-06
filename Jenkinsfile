@@ -6,32 +6,47 @@ pipeline{
     }
     environment {
         SCANNER_HOME=tool 'SonarQube-Scanner'
+        SONAR_SERVER = 'sonarqube'
     }
     stages {
         stage('clean workspace'){
             steps{
+                echo '============================== CLEAN WORKSHOP =============================='
                 cleanWs()
             }
         }
         stage('Checkout from Git'){
             steps{
+                echo '============================== GIT CHECKOUT =============================='
                 git branch: 'master', url: 'https://github.com/chaudharysurya14/Netflix_CICD_Project.git'
             }
         }
         stage ('Software Composition Analysis') {
             steps {
-                dependencyCheck additionalArguments: '--scan ./ --disableYarnAudit --disableNodeAudit', odcInstallation: 'Owasp-DC'
-                dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
+                echo '============================== DEPENDENCY CHECK =============================='
+                dependencyCheck additionalArguments: ''' 
+                    -o "./" 
+                    -s "./"
+                    -f "ALL" 
+                    --prettyPrint''', odcInstallation: 'Owasp-DC'
+                dependencyCheckPublisher pattern: 'dependency-check-report.xml'
             }
         }
-        // stage("Sonarqube Analysis "){
-        //     steps{
-        //         withSonarQubeEnv('sonar-server') {
-        //             sh ''' $SCANNER_HOME/bin/sonar-scanner -Dsonar.projectName=Netflix \
-        //             -Dsonar.projectKey=Netflix '''
-        //         }
-        //     }
-        // }
+        stage('Install Dependencies') {
+            steps {
+                echo '============================== INSTALL DEPENDENCY =============================='
+                sh "npm install"
+            }
+        }
+        stage("Sonarqube Analysis "){
+            steps{
+                echo '============================== STATIC ANALYSIS =============================='
+                withSonarQubeEnv('sonar-server') {
+                    sh ''' $SCANNER_HOME/bin/sonar-scanner -Dsonar.projectName=Netflix \
+                    -Dsonar.projectKey=Netflix '''
+                }
+            }
+        }
         // stage("quality gate"){
         //    steps {
         //         script {
@@ -39,11 +54,7 @@ pipeline{
         //         }
         //     } 
         // }
-        stage('Install Dependencies') {
-            steps {
-                sh "npm install"
-            }
-        }
+        
     }
     // post {
     //  always {
