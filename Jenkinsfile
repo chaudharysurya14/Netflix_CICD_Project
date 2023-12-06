@@ -88,6 +88,11 @@ pipeline{
                 }
             }
         }
+        stage('Deploy to container'){
+            steps{
+                sh "docker run -d --name netflix -p 8081:80 surya0010/netflix:$BUILD_ID"
+            }
+        }
         stage("TRIVY"){
             steps{
                 echo '============================== IMAGE SCANNING =============================='
