@@ -107,25 +107,25 @@ pipeline{
                 echo '============================== DEPLOY ON K8s =============================='
                 script{
                     dir('Kubernetes') {
-                        withKubeConfig(caCertificate: '', clusterName: '', contextName: '', credentialsId: 'k8s', namespace: '', restrictKubeConfigAccess: false, serverUrl: '') {
-                                sh 'kubectl apply -f deployment.yml'
-                                sh 'kubectl apply -f service.yml'
-                        }   
+                        withKubeConfig(caCertificate: '', clusterName: '', contextName: '', credentialsId: 'K8s', namespace: '', restrictKubeConfigAccess: false, serverUrl: '') {
+                            sh "kubectl apply -f deployment.yml"
+                            sh "kubectl apply -f service.yml"
+                        }    
                     }
                 }
             }
         }
         
     }
-    post {
-     always {
-        emailext attachLog: true,
-            subject: "'${currentBuild.result}'",
-            body: "Project: ${env.JOB_NAME}<br/>" +
-                "Build Number: ${env.BUILD_NUMBER}<br/>" +
-                "URL: ${env.BUILD_URL}<br/>",
-            to: 'postbox.suryahpcsa@gmail.com',
-            attachmentsPattern: 'trivyfs.txt,trivyimage.txt'
-        }
-    }
+    // post {
+    //  always {
+    //     emailext attachLog: true,
+    //         subject: "'${currentBuild.result}'",
+    //         body: "Project: ${env.JOB_NAME}<br/>" +
+    //             "Build Number: ${env.BUILD_NUMBER}<br/>" +
+    //             "URL: ${env.BUILD_URL}<br/>",
+    //         to: 'postbox.suryahpcsa@gmail.com',
+    //         attachmentsPattern: 'trivyfs.txt,trivyimage.txt'
+    //     }
+    // }
 }
