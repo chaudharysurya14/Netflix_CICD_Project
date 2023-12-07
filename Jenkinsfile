@@ -67,41 +67,41 @@ pipeline{
         //         sh "trivy fs . > trivyfs.txt"
         //     }
         // }
-        stage("Docker Build"){
-            steps{
-                echo '============================== DOCKER BUILD =============================='
-                script{
-                    withDockerRegistry(credentialsId: 'docker_credentials', toolName: 'ocker_cred'){   
-                        sh "docker build --build-arg TMDB_V3_API_KEY=3ad796c963c27c26487ac7d944e24532 -t netflix ."
-                    }
-                }
-            }
-        }
-        stage("Docker push"){
-            steps{
-                echo '============================== DOCKER PUSH =============================='
-                script{
-                   withDockerRegistry(credentialsId: 'docker_credentials', toolName: 'ocker_cred'){   
-                       sh "docker tag netflix surya0010/netflix:$BUILD_ID"
-                       sh "docker push surya0010/netflix:$BUILD_ID"
-                    }
-                }
-            }
-        }
-        stage("TRIVY IMAGE SCAN"){
-            steps{
-                echo '============================== TRIVY IMAGE SCANNING =============================='
-                sh "trivy image surya0010/netflix:latest > trivyimage.txt" 
-            }
-        }
-        stage('Deploy to container'){
-            steps{
-                echo '============================== DEPLOY ON DOCKER =============================='
-                sh "docker stop netflix"
-                sh "docker rm netflix"
-                sh "docker run -d --name netflix -p 8081:80 surya0010/netflix:$BUILD_ID"
-            }
-        }
+        // stage("Docker Build"){
+        //     steps{
+        //         echo '============================== DOCKER BUILD =============================='
+        //         script{
+        //             withDockerRegistry(credentialsId: 'docker_credentials', toolName: 'ocker_cred'){   
+        //                 sh "docker build --build-arg TMDB_V3_API_KEY=3ad796c963c27c26487ac7d944e24532 -t netflix ."
+        //             }
+        //         }
+        //     }
+        // }
+        // stage("Docker push"){
+        //     steps{
+        //         echo '============================== DOCKER PUSH =============================='
+        //         script{
+        //            withDockerRegistry(credentialsId: 'docker_credentials', toolName: 'ocker_cred'){   
+        //                sh "docker tag netflix surya0010/netflix:$BUILD_ID"
+        //                sh "docker push surya0010/netflix:$BUILD_ID"
+        //             }
+        //         }
+        //     }
+        // }
+        // stage("TRIVY IMAGE SCAN"){
+        //     steps{
+        //         echo '============================== TRIVY IMAGE SCANNING =============================='
+        //         sh "trivy image surya0010/netflix:latest > trivyimage.txt" 
+        //     }
+        // }
+        // stage('Deploy to container'){
+        //     steps{
+        //         echo '============================== DEPLOY ON DOCKER =============================='
+        //         sh "docker stop netflix"
+        //         sh "docker rm netflix"
+        //         sh "docker run -d --name netflix -p 8081:80 surya0010/netflix:$BUILD_ID"
+        //     }
+        // }
         stage('Deploy to kubernets'){
             steps{
                 echo '============================== DEPLOY ON K8s =============================='
