@@ -99,7 +99,7 @@ pipeline{
                 echo '============================== DEPLOY ON DOCKER =============================='
                 sh "docker stop netflix"
                 sh "docker rm netflix"
-                sh "docker run -d --name netflix -p 8081:80 surya0010/netflix:$BUILD_ID"
+                sh "docker run -d --name netflix -p 8081:80 surya0010/netflix:36"
             }
         }
         stage('Deploy to kubernets'){
