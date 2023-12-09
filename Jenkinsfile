@@ -97,8 +97,8 @@ pipeline{
         stage('Deploy to container'){
             steps{
                 echo '============================== DEPLOY ON DOCKER =============================='
-                sh "docker stop netflix"
-                sh "docker rm netflix"
+                sh "docker stop netflix" || true
+                sh "docker rm netflix" || true
                 sh "docker run -d --name netflix -p 8081:80 surya0010/netflix:36"
             }
         }
