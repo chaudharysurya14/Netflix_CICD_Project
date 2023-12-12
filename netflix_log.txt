@@ -1,0 +1,857 @@
+Started by user DevSecOps_surya
+Obtained Jenkinsfile from git https://github.com/chaudharysurya14/Netflix_CICD_Project.git
+[Pipeline] Start of Pipeline
+[Pipeline] node
+Running on Jenkins in /var/lib/jenkins/workspace/Netflix
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Declarative: Checkout SCM)
+[Pipeline] checkout
+The recommended git tool is: git
+No credentials specified
+ > git rev-parse --resolve-git-dir /var/lib/jenkins/workspace/Netflix/.git # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url https://github.com/chaudharysurya14/Netflix_CICD_Project.git # timeout=10
+Fetching upstream changes from https://github.com/chaudharysurya14/Netflix_CICD_Project.git
+ > git --version # timeout=10
+ > git --version # 'git version 2.34.1'
+ > git fetch --tags --force --progress -- https://github.com/chaudharysurya14/Netflix_CICD_Project.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git rev-parse refs/remotes/origin/master^{commit} # timeout=10
+Checking out Revision b42a23ee34859d0bc61d84e81e200c03ccbd06fc (refs/remotes/origin/master)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f b42a23ee34859d0bc61d84e81e200c03ccbd06fc # timeout=10
+Commit message: "update jenkinsfile"
+ > git rev-list --no-walk bb3fb4d4d6bc85a2cc1619afaedf0fe2c28742de # timeout=10
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] tool
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Declarative: Tool Install)
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (clean workspace)
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] echo
+============================== CLEAN WORKSHOP ==============================
+[Pipeline] cleanWs
+[WS-CLEANUP] Deleting project workspace...
+[WS-CLEANUP] Deferred wipeout is used...
+[WS-CLEANUP] done
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Checkout from Git)
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] echo
+============================== GIT CHECKOUT ==============================
+[Pipeline] git
+The recommended git tool is: git
+No credentials specified
+Cloning the remote Git repository
+Cloning repository https://github.com/chaudharysurya14/Netflix_CICD_Project.git
+ > git init /var/lib/jenkins/workspace/Netflix # timeout=10
+Fetching upstream changes from https://github.com/chaudharysurya14/Netflix_CICD_Project.git
+ > git --version # timeout=10
+ > git --version # 'git version 2.34.1'
+ > git fetch --tags --force --progress -- https://github.com/chaudharysurya14/Netflix_CICD_Project.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git config remote.origin.url https://github.com/chaudharysurya14/Netflix_CICD_Project.git # timeout=10
+ > git config --add remote.origin.fetch +refs/heads/*:refs/remotes/origin/* # timeout=10
+Avoid second fetch
+ > git rev-parse refs/remotes/origin/master^{commit} # timeout=10
+Checking out Revision b42a23ee34859d0bc61d84e81e200c03ccbd06fc (refs/remotes/origin/master)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f b42a23ee34859d0bc61d84e81e200c03ccbd06fc # timeout=10
+ > git branch -a -v --no-abbrev # timeout=10
+ > git checkout -b master b42a23ee34859d0bc61d84e81e200c03ccbd06fc # timeout=10
+Commit message: "update jenkinsfile"
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Software Composition Analysis)
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] echo
+============================== DEPENDENCY CHECK ==============================
+[Pipeline] dependencyCheck
+[INFO] Instance is null, returning unconfigured instance
+[INFO] Using system property [[{0}] [{1}]]
+[INFO] Setting default auxiliaries to "{0}"
+[INFO] setting defaultCompositeCacheAttributes to {0}
+[INFO] setting defaultElementAttributes to {0}
+[INFO] initialized MemoryCache for {0}
+[INFO] Constructed cache with name [{0}] and cache attributes {1}
+[INFO] No cache event logger defined for auxiliary [{0}]
+[INFO] Using standard serializer [{0}] for auxiliary [{1}]
+[INFO] {0}: Set maxKeySize to: "{1}"
+[INFO] {0}: Cache file root directory: {1}
+[INFO] {0}: Indexed Disk Cache is alive.
+[INFO] initialized MemoryCache for {0}
+[INFO] Constructed cache with name [{0}] and cache attributes {1}
+[INFO] No cache event logger defined for auxiliary [{0}]
+[INFO] Using standard serializer [{0}] for auxiliary [{1}]
+[INFO] {0}: Set maxKeySize to: "{1}"
+[INFO] {0}: Cache file root directory: {1}
+[INFO] {0}: Indexed Disk Cache is alive.
+[INFO] initialized MemoryCache for {0}
+[INFO] Constructed cache with name [{0}] and cache attributes {1}
+[INFO] No cache event logger defined for auxiliary [{0}]
+[INFO] Using standard serializer [{0}] for auxiliary [{1}]
+[INFO] {0}: Set maxKeySize to: "{1}"
+[INFO] {0}: Cache file root directory: {1}
+[INFO] {0}: Loaded keys from [{1}], key count: {2}; up to {3} will be available.
+[INFO] {0}: Finished inital consistency check, isOk = {1} in {2}
+[INFO] {0}: Indexed Disk Cache is alive.
+[INFO] Parsed regions {0}
+[INFO] Finished configuration in {0} ms.
+[INFO] Checking for updates
+[INFO] Skipping NVD check since last check was within 4 hours.
+[INFO] Skipping RetireJS update since last update was within 24 hours.
+[INFO] Skipping Hosted Suppressions file update since last update was within 2 hours.
+[INFO] Skipping Known Exploited Vulnerabilities update check since last check was within 24 hours.
+[INFO] Check for updates complete (65 ms)
+[INFO] 
+
+Dependency-Check is an open source tool performing a best effort analysis of 3rd party dependencies; false positives and false negatives may exist in the analysis performed by the tool. Use of the tool and the reporting provided constitutes acceptance for use in an AS IS condition, and there are NO warranties, implied or otherwise, with regard to the analysis or its use. Any use of the tool and the reporting provided is at the user’s risk. In no event shall the copyright holder or OWASP be held liable for any damages whatsoever arising out of or in connection with the use of this tool, the analysis performed, or the resulting report.
+
+
+   About ODC: https://jeremylong.github.io/DependencyCheck/general/internals.html
+   False Positives: https://jeremylong.github.io/DependencyCheck/general/suppression.html
+
+💖 Sponsor: https://github.com/sponsors/jeremylong
+
+
+[INFO] Analysis Started
+[INFO] Finished File Name Analyzer (0 seconds)
+[WARN] Analyzing `/var/lib/jenkins/workspace/Netflix/package.json` - however, the node_modules directory does not exist. Please run `npm install` prior to running dependency-check
+[INFO] Finished Node.js Package Analyzer (0 seconds)
+[INFO] Finished Dependency Merging Analyzer (0 seconds)
+[INFO] Finished Hint Analyzer (0 seconds)
+[INFO] Finished Version Filter Analyzer (0 seconds)
+[INFO] Created CPE Index (2 seconds)
+[INFO] Finished CPE Analyzer (3 seconds)
+[INFO] Finished False Positive Analyzer (0 seconds)
+[INFO] Finished NVD CVE Analyzer (0 seconds)
+[WARN] The Yarn Audit Analyzer has been disabled. Yarn executable was not found.
+[ERROR] Exception occurred initializing Yarn Audit Analyzer.
+[WARN] Unable to determine Package-URL identifiers for 2 dependencies
+[INFO] Finished Sonatype OSS Index Analyzer (0 seconds)
+[INFO] Finished Vulnerability Suppression Analyzer (0 seconds)
+[INFO] Finished Known Exploited Vulnerability Analyzer (0 seconds)
+[INFO] Finished Dependency Bundling Analyzer (0 seconds)
+[INFO] Finished Unused Suppression Rule Analyzer (0 seconds)
+[INFO] Analysis Complete (3 seconds)
+[INFO] Writing report to: /var/lib/jenkins/workspace/Netflix/./dependency-check-report.xml
+[INFO] Writing report to: /var/lib/jenkins/workspace/Netflix/./dependency-check-report.html
+[INFO] Writing report to: /var/lib/jenkins/workspace/Netflix/./dependency-check-report.json
+[INFO] Writing report to: /var/lib/jenkins/workspace/Netflix/./dependency-check-report.csv
+[INFO] Writing report to: /var/lib/jenkins/workspace/Netflix/./dependency-check-report.sarif
+[INFO] Writing report to: /var/lib/jenkins/workspace/Netflix/./dependency-check-jenkins.html
+[INFO] Writing report to: /var/lib/jenkins/workspace/Netflix/./dependency-check-junit.xml
+[INFO] Element event queue destroyed: {0}
+[INFO] In DISPOSE, [{0}] fromRemote [{1}]
+[INFO] In DISPOSE, [{0}] auxiliary [{1}]
+[INFO] In DISPOSE, [{0}] put {1} into auxiliary [{2}]
+[INFO] In dispose, destroying event queue.
+[INFO] Cache event queue destroyed: {0}
+[INFO] {0}: Saving keys to: {1}, key count: {2}
+[INFO] {0}: Finished saving keys.
+[INFO] {0}: Shutdown complete.
+[INFO] In DISPOSE, [{0}] disposing of memory cache.
+[INFO] Memory Cache dispose called.
+[INFO] In DISPOSE, [{0}] fromRemote [{1}]
+[INFO] In DISPOSE, [{0}] auxiliary [{1}]
+[INFO] In DISPOSE, [{0}] put {1} into auxiliary [{2}]
+[INFO] In dispose, destroying event queue.
+[INFO] Cache event queue destroyed: {0}
+[INFO] {0}: Saving keys to: {1}, key count: {2}
+[INFO] {0}: Finished saving keys.
+[INFO] {0}: Shutdown complete.
+[INFO] In DISPOSE, [{0}] disposing of memory cache.
+[INFO] Memory Cache dispose called.
+[INFO] In DISPOSE, [{0}] fromRemote [{1}]
+[INFO] In DISPOSE, [{0}] auxiliary [{1}]
+[INFO] In DISPOSE, [{0}] put {1} into auxiliary [{2}]
+[INFO] In dispose, destroying event queue.
+[INFO] Cache event queue destroyed: {0}
+[INFO] {0}: Saving keys to: {1}, key count: {2}
+[INFO] {0}: Finished saving keys.
+[INFO] {0}: Shutdown complete.
+[INFO] In DISPOSE, [{0}] disposing of memory cache.
+[INFO] Memory Cache dispose called.
+[INFO] In dispose, destroying event queue.
+[ERROR] {0}: Not alive and dispose was called, filename: {1}
+[INFO] In dispose, destroying event queue.
+[ERROR] {0}: Not alive and dispose was called, filename: {1}
+[INFO] In dispose, destroying event queue.
+[ERROR] {0}: Not alive and dispose was called, filename: {1}
+[ERROR] Unable to read yarn audit output.
+[Pipeline] dependencyCheckPublisher
+Collecting Dependency-Check artifact
+Parsing file /var/lib/jenkins/workspace/Netflix/dependency-check-report.xml
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Install Dependencies)
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] echo
+============================== INSTALL DEPENDENCY ==============================
+[Pipeline] sh
++ npm install
+npm WARN deprecated sourcemap-codec@1.4.8: Please use @jridgewell/sourcemap-codec instead
+
+added 234 packages, and audited 235 packages in 1m
+
+23 packages are looking for funding
+  run `npm fund` for details
+
+2 vulnerabilities (1 moderate, 1 high)
+
+To address all issues, run:
+  npm audit fix
+
+Run `npm audit` for details.
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Sonarqube Analysis )
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] echo
+============================== STATIC ANALYSIS ==============================
+[Pipeline] withSonarQubeEnv
+Injecting SonarQube environment variables using the configuration: sonarqube
+[Pipeline] {
+[Pipeline] sh
++ /var/lib/jenkins/tools/hudson.plugins.sonar.SonarRunnerInstallation/SonarQube-Scanner/bin/sonar-scanner -Dsonar.projectName=Netflix -Dsonar.projectKey=Netflix
+INFO: Scanner configuration file: /var/lib/jenkins/tools/hudson.plugins.sonar.SonarRunnerInstallation/SonarQube-Scanner/conf/sonar-scanner.properties
+INFO: Project root configuration file: NONE
+INFO: SonarQube Scanner 4.2.0.1873
+INFO: Java 17.0.8.1 Eclipse Adoptium (64-bit)
+INFO: Linux 6.2.0-37-generic amd64
+INFO: User cache: /var/lib/jenkins/.sonar/cache
+INFO: SonarQube server 10.3.0.82913
+INFO: Default locale: "en_IN", source code encoding: "UTF-8" (analysis is platform dependent)
+INFO: Load global settings
+INFO: Load global settings (done) | time=202ms
+INFO: Server id: 147B411E-AYvxu4KISope7zU6slyt
+INFO: User cache: /var/lib/jenkins/.sonar/cache
+INFO: Load/download plugins
+INFO: Load plugins index
+INFO: Load plugins index (done) | time=269ms
+INFO: Load/download plugins (done) | time=1406ms
+INFO: Process project properties
+INFO: Process project properties (done) | time=1ms
+INFO: Execute project builders
+INFO: Execute project builders (done) | time=2ms
+INFO: Project key: Netflix
+INFO: Base dir: /var/lib/jenkins/workspace/Netflix
+INFO: Working dir: /var/lib/jenkins/workspace/Netflix/.scannerwork
+INFO: Load project settings for component key: 'Netflix'
+INFO: Load project settings for component key: 'Netflix' (done) | time=26ms
+INFO: Auto-configuring with CI 'Jenkins'
+INFO: Load quality profiles
+INFO: Load quality profiles (done) | time=130ms
+INFO: Load active rules
+INFO: Load active rules (done) | time=3048ms
+INFO: Load analysis cache
+INFO: Load analysis cache | time=98ms
+INFO: Load project repositories
+INFO: Load project repositories (done) | time=17ms
+INFO: Indexing files...
+INFO: Project configuration:
+INFO: 5132 files indexed
+INFO: 0 files ignored because of scm ignore settings
+INFO: Quality profile for docker: Sonar way
+INFO: Quality profile for json: Sonar way
+INFO: Quality profile for ruby: Sonar way
+INFO: Quality profile for ts: Sonar way
+INFO: Quality profile for web: Sonar way
+INFO: Quality profile for xml: Sonar way
+INFO: Quality profile for yaml: Sonar way
+INFO: ------------- Run sensors on module Netflix
+INFO: Load metrics repository
+INFO: Load metrics repository (done) | time=48ms
+INFO: Sensor JaCoCo XML Report Importer [jacoco]
+INFO: 'sonar.coverage.jacoco.xmlReportPaths' is not defined. Using default locations: target/site/jacoco/jacoco.xml,target/site/jacoco-it/jacoco.xml,build/reports/jacoco/test/jacocoTestReport.xml
+INFO: No report imported, no coverage information will be imported by JaCoCo XML Report Importer
+INFO: Sensor JaCoCo XML Report Importer [jacoco] (done) | time=2ms
+INFO: Sensor IaC CloudFormation Sensor [iac]
+INFO: 0 source files to be analyzed
+INFO: 0/0 source files have been analyzed
+INFO: Sensor IaC CloudFormation Sensor [iac] (done) | time=2150ms
+INFO: Sensor IaC Kubernetes Sensor [iac]
+INFO: 2 source files to be analyzed
+INFO: 2/2 source files have been analyzed
+INFO: Sensor IaC Kubernetes Sensor [iac] (done) | time=94ms
+INFO: Sensor IaC AzureResourceManager Sensor [iac]
+INFO: 0 source files to be analyzed
+INFO: 0/0 source files have been analyzed
+INFO: Sensor IaC AzureResourceManager Sensor [iac] (done) | time=152ms
+INFO: Sensor JavaScript/TypeScript analysis [javascript]
+INFO: Detected os: Linux arch: amd64 alpine: false. Platform: LINUX_X64
+INFO: Using Node.js executable: 'node'.
+INFO: Memory configuration: OS (3868 MB), Node.js (1982 MB).
+WARN: Using Node.js version 16 to execute analysis is deprecated and will stop being supported no earlier than Nov 30th, 2023. Please upgrade to a newer LTS version of Node.js [18, 20]
+INFO: Found 1 tsconfig.json file(s): [/var/lib/jenkins/workspace/Netflix/tsconfig.json]
+INFO: Creating TypeScript program
+INFO: 64 source files to be analyzed
+INFO: TypeScript configuration file /var/lib/jenkins/workspace/Netflix/tsconfig.json
+INFO: Creating TypeScript program (done) | time=8653ms
+INFO: Starting analysis with current program
+INFO: 4/64 files analyzed, current file: /var/lib/jenkins/workspace/Netflix/src/store/slices/apiSlice.ts
+INFO: Analyzed 63 file(s) with current program
+INFO: Creating TypeScript program
+INFO: TypeScript configuration file /var/lib/jenkins/workspace/Netflix/tsconfig.node.json
+INFO: Creating TypeScript program (done) | time=523ms
+INFO: Starting analysis with current program
+INFO: Analyzed 1 file(s) with current program
+INFO: 64/64 source files have been analyzed
+INFO: Hit the cache for 0 out of 64
+INFO: Miss the cache for 64 out of 64: ANALYSIS_MODE_INELIGIBLE [64/64]
+INFO: Sensor JavaScript/TypeScript analysis [javascript] (done) | time=29113ms
+INFO: Sensor JavaScript inside YAML analysis [javascript]
+INFO: No input files found for analysis
+INFO: Hit the cache for 0 out of 0
+INFO: Miss the cache for 0 out of 0
+INFO: Sensor JavaScript inside YAML analysis [javascript] (done) | time=3ms
+INFO: Sensor JavaScript inside HTML analysis [javascript]
+INFO: 34 source files to be analyzed
+INFO: 34/34 source files have been analyzed
+INFO: Hit the cache for 0 out of 34
+INFO: Miss the cache for 34 out of 34: ANALYSIS_MODE_INELIGIBLE [34/34]
+INFO: Sensor JavaScript inside HTML analysis [javascript] (done) | time=6220ms
+INFO: Sensor CSS Rules [javascript]
+INFO: 34 source files to be analyzed
+INFO: 34/34 source files have been analyzed
+INFO: Hit the cache for 0 out of 0
+INFO: Miss the cache for 0 out of 0
+INFO: Sensor CSS Rules [javascript] (done) | time=2021ms
+INFO: Sensor Ruby Sensor [ruby]
+INFO: 1 source file to be analyzed
+java.io.IOException: Resource not found: "org/joda/time/tz/data/ZoneInfoMap" ClassLoader: ClassRealm{ruby}
+	at org.joda.time.tz.ZoneInfoProvider.openResource(ZoneInfoProvider.java:225)
+	at org.joda.time.tz.ZoneInfoProvider.<init>(ZoneInfoProvider.java:138)
+	at org.joda.time.tz.ZoneInfoProvider.<init>(ZoneInfoProvider.java:97)
+	at org.joda.time.DateTimeZone.getDefaultProvider(DateTimeZone.java:555)
+	at org.joda.time.DateTimeZone.getProvider(DateTimeZone.java:449)
+	at org.joda.time.DateTimeZone.forID(DateTimeZone.java:234)
+	at org.joda.time.DateTimeZone.getDefault(DateTimeZone.java:169)
+	at org.joda.time.chrono.ISOChronology.getInstance(ISOChronology.java:79)
+	at org.joda.time.base.BaseDateTime.<init>(BaseDateTime.java:97)
+	at org.joda.time.DateTime.<init>(DateTime.java:209)
+	at org.jruby.util.log.OutputStreamLogger.formatMessage(OutputStreamLogger.java:146)
+	at org.jruby.util.log.StandardErrorLogger.write(StandardErrorLogger.java:58)
+	at org.jruby.util.log.OutputStreamLogger.warn(OutputStreamLogger.java:67)
+	at org.jruby.util.io.FilenoUtil$ReflectiveAccess.<clinit>(FilenoUtil.java:278)
+	at org.jruby.util.io.FilenoUtil.getFilenoUsingReflection(FilenoUtil.java:143)
+	at org.jruby.util.io.FilenoUtil.filenoFrom(FilenoUtil.java:139)
+	at org.jruby.util.io.ChannelFD.initFileno(ChannelFD.java:51)
+	at org.jruby.util.io.ChannelFD.<init>(ChannelFD.java:37)
+	at org.jruby.util.io.ChannelFD.<init>(ChannelFD.java:47)
+	at org.jruby.util.io.OpenFile.setChannel(OpenFile.java:195)
+	at org.jruby.RubyIO.prepIO(RubyIO.java:263)
+	at org.jruby.RubyIO.prepStdio(RubyIO.java:192)
+	at org.jruby.RubyGlobal.initSTDIO(RubyGlobal.java:314)
+	at org.jruby.RubyGlobal.createGlobals(RubyGlobal.java:228)
+	at org.jruby.Ruby.<init>(Ruby.java:513)
+	at org.jruby.Ruby.newInstance(Ruby.java:716)
+	at org.jruby.javasupport.JavaEmbedUtils.initialize(JavaEmbedUtils.java:79)
+	at org.jruby.javasupport.JavaEmbedUtils.initialize(JavaEmbedUtils.java:69)
+	at org.sonarsource.ruby.converter.RubyConverter.initializeRubyRuntime(RubyConverter.java:182)
+	at org.sonarsource.ruby.converter.RubyConverter.<init>(RubyConverter.java:75)
+	at org.sonarsource.ruby.converter.RubyConverter.<init>(RubyConverter.java:82)
+	at org.sonarsource.ruby.plugin.RubySensor.astConverter(RubySensor.java:45)
+	at org.sonarsource.slang.plugin.SlangSensor.execute(SlangSensor.java:201)
+	at org.sonar.scanner.sensor.AbstractSensorWrapper.analyse(AbstractSensorWrapper.java:64)
+	at org.sonar.scanner.sensor.ModuleSensorsExecutor.execute(ModuleSensorsExecutor.java:88)
+	at org.sonar.scanner.sensor.ModuleSensorsExecutor.lambda$execute$1(ModuleSensorsExecutor.java:61)
+	at org.sonar.scanner.sensor.ModuleSensorsExecutor.withModuleStrategy(ModuleSensorsExecutor.java:79)
+	at org.sonar.scanner.sensor.ModuleSensorsExecutor.execute(ModuleSensorsExecutor.java:61)
+	at org.sonar.scanner.scan.SpringModuleScanContainer.doAfterStart(SpringModuleScanContainer.java:82)
+	at org.sonar.core.platform.SpringComponentContainer.startComponents(SpringComponentContainer.java:201)
+	at org.sonar.core.platform.SpringComponentContainer.execute(SpringComponentContainer.java:180)
+	at org.sonar.scanner.scan.SpringProjectScanContainer.scan(SpringProjectScanContainer.java:398)
+	at org.sonar.scanner.scan.SpringProjectScanContainer.scanRecursively(SpringProjectScanContainer.java:394)
+	at org.sonar.scanner.scan.SpringProjectScanContainer.doAfterStart(SpringProjectScanContainer.java:363)
+	at org.sonar.core.platform.SpringComponentContainer.startComponents(SpringComponentContainer.java:201)
+	at org.sonar.core.platform.SpringComponentContainer.execute(SpringComponentContainer.java:180)
+	at org.sonar.scanner.bootstrap.SpringGlobalContainer.doAfterStart(SpringGlobalContainer.java:139)
+	at org.sonar.core.platform.SpringComponentContainer.startComponents(SpringComponentContainer.java:201)
+	at org.sonar.core.platform.SpringComponentContainer.execute(SpringComponentContainer.java:180)
+	at org.sonar.batch.bootstrapper.Batch.doExecute(Batch.java:71)
+	at org.sonar.batch.bootstrapper.Batch.execute(Batch.java:65)
+	at org.sonarsource.scanner.api.internal.batch.BatchIsolatedLauncher.execute(BatchIsolatedLauncher.java:46)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.sonarsource.scanner.api.internal.IsolatedLauncherProxy.invoke(IsolatedLauncherProxy.java:60)
+	at jdk.proxy1/jdk.proxy1.$Proxy0.execute(Unknown Source)
+	at org.sonarsource.scanner.api.EmbeddedScanner.doExecute(EmbeddedScanner.java:189)
+	at org.sonarsource.scanner.api.EmbeddedScanner.execute(EmbeddedScanner.java:138)
+	at org.sonarsource.scanner.cli.Main.execute(Main.java:112)
+	at org.sonarsource.scanner.cli.Main.execute(Main.java:75)
+	at org.sonarsource.scanner.cli.Main.main(Main.java:61)
+2023-12-07T09:25:25.030Z [main] WARN FilenoUtil : Native subprocess control requires open access to the JDK IO subsystem
+Pass '--add-opens java.base/sun.nio.ch=ALL-UNNAMED --add-opens java.base/java.io=ALL-UNNAMED' to enable.
+INFO: 1/1 source file has been analyzed
+INFO: Sensor Ruby Sensor [ruby] (done) | time=4487ms
+INFO: Sensor SimpleCov Sensor for Ruby coverage [ruby]
+INFO: Sensor SimpleCov Sensor for Ruby coverage [ruby] (done) | time=1ms
+INFO: Sensor C# Project Type Information [csharp]
+INFO: Sensor C# Project Type Information [csharp] (done) | time=6ms
+INFO: Sensor C# Analysis Log [csharp]
+INFO: Sensor C# Analysis Log [csharp] (done) | time=58ms
+INFO: Sensor C# Properties [csharp]
+INFO: Sensor C# Properties [csharp] (done) | time=0ms
+INFO: Sensor HTML [web]
+INFO: Sensor HTML [web] (done) | time=428ms
+INFO: Sensor XML Sensor [xml]
+INFO: 2 source files to be analyzed
+INFO: 2/2 source files have been analyzed
+INFO: Sensor XML Sensor [xml] (done) | time=495ms
+INFO: Sensor TextAndSecretsSensor [text]
+INFO: 742 source files to be analyzed
+INFO: 640/742 files analyzed, current file: node_modules/@videojs/http-streaming/scripts/hls-manifest-object.json
+INFO: 742/742 source files have been analyzed
+INFO: Sensor TextAndSecretsSensor [text] (done) | time=11990ms
+INFO: Sensor VB.NET Project Type Information [vbnet]
+INFO: Sensor VB.NET Project Type Information [vbnet] (done) | time=5ms
+INFO: Sensor VB.NET Analysis Log [vbnet]
+INFO: Sensor VB.NET Analysis Log [vbnet] (done) | time=104ms
+INFO: Sensor VB.NET Properties [vbnet]
+INFO: Sensor VB.NET Properties [vbnet] (done) | time=0ms
+INFO: Sensor IaC Docker Sensor [iac]
+INFO: 1 source file to be analyzed
+INFO: 1/1 source file has been analyzed
+INFO: Sensor IaC Docker Sensor [iac] (done) | time=95ms
+INFO: ------------- Run sensors on project
+INFO: Sensor Analysis Warnings import [csharp]
+INFO: Sensor Analysis Warnings import [csharp] (done) | time=0ms
+INFO: Sensor Zero Coverage Sensor
+INFO: Sensor Zero Coverage Sensor (done) | time=99ms
+INFO: SCM Publisher SCM provider for this project is: git
+INFO: SCM Publisher 36 source files to be analyzed
+INFO: SCM Publisher 1/36 source file have been analyzed (done) | time=254ms
+WARN: Missing blame information for the following files:
+WARN:   * node_modules/slick-carousel/index.html
+WARN:   * dependency-check-report.xml
+WARN:   * node_modules/keycode/examples/index.html
+WARN:   * node_modules/videojs-youtube/examples/youtube-list.html
+WARN:   * dependency-check-junit.xml
+WARN:   * node_modules/slick-carousel/slick/config.rb
+WARN:   * node_modules/videojs-youtube/examples/youtube-playlist.html
+WARN:   * node_modules/tslib/tslib.html
+WARN:   * node_modules/aes-decrypter/node_modules/@videojs/vhs-utils/index.html
+WARN:   * node_modules/@videojs/vhs-utils/index.html
+WARN:   * node_modules/mpd-parser/index.html
+WARN:   * node_modules/recrawl-sync/node_modules/tslib/tslib.html
+WARN:   * node_modules/video.js/dist/examples/elephantsdream/index.html
+WARN:   * node_modules/videojs-youtube/examples/simple.html
+WARN:   * node_modules/m3u8-parser/node_modules/@videojs/vhs-utils/index.html
+WARN:   * node_modules/aes-decrypter/index.html
+WARN:   * node_modules/videojs-font/index.html
+WARN:   * node_modules/videojs-youtube/examples/youtube-controls.html
+WARN:   * node_modules/mux.js/index.html
+WARN:   * node_modules/m3u8-parser/index.html
+WARN:   * node_modules/video.js/dist/examples/simple-embed/index.html
+WARN:   * node_modules/min-document/test/static/index.html
+WARN:   * node_modules/mpd-parser/node_modules/@videojs/vhs-utils/index.html
+WARN:   * node_modules/videojs-youtube/examples/youtube-javascript.html
+WARN:   * node_modules/video.js/dist/examples/index.html
+WARN:   * node_modules/keycode/test/tests.html
+WARN:   * node_modules/tslib/tslib.es6.html
+WARN:   * dependency-check-jenkins.html
+WARN:   * dependency-check-report.html
+WARN:   * node_modules/@videojs/http-streaming/index.html
+WARN:   * node_modules/safe-json-parse/test/static/index.html
+WARN:   * node_modules/videojs-contrib-quality-levels/index.html
+WARN:   * node_modules/videojs-youtube/examples/switch.html
+WARN:   * node_modules/videojs-youtube/examples/global-parameters.html
+WARN:   * node_modules/recrawl-sync/node_modules/tslib/tslib.es6.html
+WARN: This may lead to missing/broken features in SonarQube
+INFO: CPD Executor 11 files had no CPD blocks
+INFO: CPD Executor Calculating CPD for 88 files
+INFO: CPD Executor CPD calculation finished (done) | time=69ms
+INFO: Analysis report generated in 175ms, dir size=963.1 kB
+INFO: Analysis report compressed in 556ms, zip size=428.1 kB
+INFO: Analysis report uploaded in 118ms
+INFO: ANALYSIS SUCCESSFUL, you can find the results at: http://192.168.80.14:9000/dashboard?id=Netflix
+INFO: Note that you will be able to access the updated dashboard once the server has processed the submitted analysis report
+INFO: More about the report processing at http://192.168.80.14:9000/api/ce/task?id=AYxDmOHM_sUG8U80nl8d
+INFO: Analysis total time: 1:22.778 s
+INFO: ------------------------------------------------------------------------
+INFO: EXECUTION SUCCESS
+INFO: ------------------------------------------------------------------------
+INFO: Total time: 1:28.175s
+INFO: Final Memory: 37M/134M
+INFO: ------------------------------------------------------------------------
+[Pipeline] }
+[Pipeline] // withSonarQubeEnv
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (quality gate)
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] echo
+============================== CHECK SONARQUBE QUALITY ==============================
+[Pipeline] script
+[Pipeline] {
+[Pipeline] waitForQualityGate
+Checking status of SonarQube task 'AYxDmOHM_sUG8U80nl8d' on server 'sonarqube'
+SonarQube task 'AYxDmOHM_sUG8U80nl8d' status is 'SUCCESS'
+SonarQube task 'AYxDmOHM_sUG8U80nl8d' completed. Quality gate is 'ERROR'
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (TRIVY FILES SCAN)
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] echo
+============================== TRIVY FILE SCANNING ==============================
+[Pipeline] sh
++ trivy fs .
+2023-12-07T14:56:12.558+0530	[34mINFO[0m	Vulnerability scanning is enabled
+2023-12-07T14:56:12.558+0530	[34mINFO[0m	Secret scanning is enabled
+2023-12-07T14:56:12.558+0530	[34mINFO[0m	If your scanning is slow, please try '--scanners vuln' to disable secret scanning
+2023-12-07T14:56:12.558+0530	[34mINFO[0m	Please see also https://aquasecurity.github.io/trivy/v0.48/docs/scanner/secret/#recommendation for faster secret detection
+2023-12-07T14:56:14.213+0530	[34mINFO[0m	Number of language-specific files: 2
+2023-12-07T14:56:14.213+0530	[34mINFO[0m	Detecting npm vulnerabilities...
+2023-12-07T14:56:14.405+0530	[34mINFO[0m	Detecting yarn vulnerabilities...
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Docker Build)
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] echo
+============================== DOCKER BUILD ==============================
+[Pipeline] script
+[Pipeline] {
+[Pipeline] withDockerRegistry
+$ docker login -u surya0010 -p ******** https://index.docker.io/v1/
+WARNING! Using --password via the CLI is insecure. Use --password-stdin.
+WARNING! Your password will be stored unencrypted in /var/lib/jenkins/workspace/Netflix@tmp/0c65fdf2-44c4-4ece-b767-2332fa2e0cbe/config.json.
+Configure a credential helper to remove this warning. See
+https://docs.docker.com/engine/reference/commandline/login/#credentials-store
+
+Login Succeeded
+[Pipeline] {
+[Pipeline] sh
++ docker build --build-arg TMDB_V3_API_KEY=3ad796c963c27c26487ac7d944e24532 -t netflix .
+DEPRECATED: The legacy builder is deprecated and will be removed in a future release.
+            Install the buildx component to build images with BuildKit:
+            https://docs.docker.com/go/buildx/
+
+Sending build context to Docker daemon  270.2MB
+
+Step 1/17 : FROM node:16.17.0-alpine as builder
+ ---> 5dcd1f6157bd
+Step 2/17 : WORKDIR /app
+ ---> Using cache
+ ---> 4118acd64df8
+Step 3/17 : COPY ./package.json .
+ ---> Using cache
+ ---> 9ac96b1cdd52
+Step 4/17 : COPY ./yarn.lock .
+ ---> c4bc1f6e7b56
+Step 5/17 : RUN yarn install
+ ---> Running in cb211700e92a
+yarn install v1.22.19
+[1/4] Resolving packages...
+[2/4] Fetching packages...
+[3/4] Linking dependencies...
+[91mwarning "@emotion/react > @emotion/babel-plugin@11.10.5" has unmet peer dependency "@babel/core@^7.0.0".
+[0m[91mwarning "@emotion/react > @emotion/babel-plugin > @babel/plugin-syntax-jsx@7.18.6" has unmet peer dependency "@babel/core@^7.0.0-0".
+[0m[91mwarning " > slick-carousel@1.8.1" has unmet peer dependency "jquery@>=1.8.0".
+[0m[4/4] Building fresh packages...
+success Saved lockfile.
+Done in 179.09s.
+Removing intermediate container cb211700e92a
+ ---> 2dfc97fdb5b6
+Step 6/17 : COPY . .
+ ---> 24d3996ec63f
+Step 7/17 : ARG TMDB_V3_API_KEY
+ ---> Running in 8232507992bf
+Removing intermediate container 8232507992bf
+ ---> 1145738346ae
+Step 8/17 : ENV VITE_APP_TMDB_V3_API_KEY=${TMDB_V3_API_KEY}
+ ---> Running in 163ca851e363
+Removing intermediate container 163ca851e363
+ ---> 840f149e8f2f
+Step 9/17 : ENV VITE_APP_API_ENDPOINT_URL="https://api.themoviedb.org/3"
+ ---> Running in 7f6ae5c316aa
+Removing intermediate container 7f6ae5c316aa
+ ---> 5c8f885376ac
+Step 10/17 : RUN yarn build
+ ---> Running in ac5c81a43c6d
+yarn run v1.22.19
+$ tsc && vite build
+vite v3.2.2 building for production...
+transforming...
+✓ 1513 modules transformed.
+rendering chunks...
+dist/assets/ajax-loader.e7b44c86.gif         4.08 KiB
+dist/assets/slick.12459f22.svg               2.10 KiB
+dist/index.html                              0.77 KiB
+dist/assets/GenreExplore.535f54cc.js         1.41 KiB / gzip: 0.82 KiB
+dist/assets/VideoItemWithHover.0cdc4bf6.js   1.34 KiB / gzip: 0.78 KiB
+dist/assets/WatchPage.66388981.js            25.86 KiB / gzip: 9.00 KiB
+dist/assets/index.a62a091f.css               55.88 KiB / gzip: 15.19 KiB
+dist/assets/HomePage.32002cfd.js             69.76 KiB / gzip: 20.01 KiB
+dist/assets/index.71ed59ae.js                1149.43 KiB / gzip: 356.41 KiB
+[91m
+(!) Some chunks are larger than 500 KiB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/guide/en/#outputmanualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+[0mDone in 29.10s.
+Removing intermediate container ac5c81a43c6d
+ ---> 3cb21fb06cc5
+Step 11/17 : MAINTAINER "saigalsainy318333@gmail.com"
+ ---> Running in 7a290b1fa011
+Removing intermediate container 7a290b1fa011
+ ---> 357fe607994c
+Step 12/17 : FROM nginx:stable-alpine
+ ---> bbb1abad84c0
+Step 13/17 : WORKDIR /usr/share/nginx/html
+ ---> Using cache
+ ---> e8e1ae218aa2
+Step 14/17 : RUN rm -rf ./*
+ ---> Using cache
+ ---> 91e8614e3e6b
+Step 15/17 : COPY --from=builder /app/dist .
+ ---> Using cache
+ ---> 19b01f8147cf
+Step 16/17 : EXPOSE 80
+ ---> Using cache
+ ---> e7fa4bca5668
+Step 17/17 : ENTRYPOINT ["nginx", "-g", "daemon off;"]
+ ---> Using cache
+ ---> 807090d49d7a
+Successfully built 807090d49d7a
+Successfully tagged netflix:latest
+[Pipeline] }
+[Pipeline] // withDockerRegistry
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Docker push)
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] echo
+============================== DOCKER PUSH ==============================
+[Pipeline] script
+[Pipeline] {
+[Pipeline] withDockerRegistry
+$ docker login -u surya0010 -p ******** https://index.docker.io/v1/
+WARNING! Using --password via the CLI is insecure. Use --password-stdin.
+WARNING! Your password will be stored unencrypted in /var/lib/jenkins/workspace/Netflix@tmp/caf9c0cd-c952-4659-90c7-e0b54daa2956/config.json.
+Configure a credential helper to remove this warning. See
+https://docs.docker.com/engine/reference/commandline/login/#credentials-store
+
+Login Succeeded
+[Pipeline] {
+[Pipeline] sh
++ docker tag netflix surya0010/netflix:34
+[Pipeline] sh
++ docker push surya0010/netflix:34
+The push refers to repository [docker.io/surya0010/netflix]
+4dfb76583eab: Preparing
+01b6cf6388b4: Preparing
+1db0439affc8: Preparing
+c7ab6f0f982a: Preparing
+31497774ce36: Preparing
+3633cb0d34c0: Preparing
+b4030a61f4ef: Preparing
+7619274197b2: Preparing
+617df26c9e2b: Preparing
+3633cb0d34c0: Waiting
+b4030a61f4ef: Waiting
+7619274197b2: Waiting
+617df26c9e2b: Waiting
+4dfb76583eab: Layer already exists
+1db0439affc8: Layer already exists
+01b6cf6388b4: Layer already exists
+c7ab6f0f982a: Layer already exists
+31497774ce36: Layer already exists
+b4030a61f4ef: Layer already exists
+7619274197b2: Layer already exists
+617df26c9e2b: Layer already exists
+3633cb0d34c0: Layer already exists
+34: digest: sha256:4b61c709d189d4ea0c398a00342cae68b402c45f415b353b99fe050cc4dd3e4d size: 2199
+[Pipeline] }
+[Pipeline] // withDockerRegistry
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (TRIVY IMAGE SCAN)
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] echo
+============================== TRIVY IMAGE SCANNING ==============================
+[Pipeline] sh
++ trivy image surya0010/netflix:latest
+2023-12-07T15:06:21.052+0530	[34mINFO[0m	Vulnerability scanning is enabled
+2023-12-07T15:06:21.052+0530	[34mINFO[0m	Secret scanning is enabled
+2023-12-07T15:06:21.052+0530	[34mINFO[0m	If your scanning is slow, please try '--scanners vuln' to disable secret scanning
+2023-12-07T15:06:21.052+0530	[34mINFO[0m	Please see also https://aquasecurity.github.io/trivy/v0.48/docs/scanner/secret/#recommendation for faster secret detection
+2023-12-07T15:06:25.248+0530	[34mINFO[0m	Detected OS: alpine
+2023-12-07T15:06:25.248+0530	[34mINFO[0m	Detecting Alpine vulnerabilities...
+2023-12-07T15:06:25.558+0530	[34mINFO[0m	Number of language-specific files: 0
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Deploy to container)
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] echo
+============================== DEPLOY ON DOCKER ==============================
+[Pipeline] sh
++ docker stop netflix
+netflix
+[Pipeline] sh
++ docker rm netflix
+netflix
+[Pipeline] sh
++ docker run -d --name netflix -p 8081:80 surya0010/netflix:34
+471b1daf03221c2385b30374fe826eb76b717bed4970163624843de2dc8a39e3
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Deploy to kubernets)
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] echo
+============================== DEPLOY ON K8s ==============================
+[Pipeline] script
+[Pipeline] {
+[Pipeline] dir
+Running in /var/lib/jenkins/workspace/Netflix/Kubernetes
+[Pipeline] {
+[Pipeline] withKubeConfig
+[Pipeline] {
+[Pipeline] sh
++ kubectl apply -f deployment.yml
+deployment.apps/netflix-app unchanged
+[Pipeline] sh
++ kubectl apply -f service.yml
+service/netflix-app unchanged
+[Pipeline] }
+[kubernetes-cli] kubectl configuration cleaned up
+[Pipeline] // withKubeConfig
+[Pipeline] }
+[Pipeline] // dir
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Declarative: Post Actions)
+[Pipeline] emailext
+Sending email to: postbox.suryahpcsa@gmail.com
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+Finished: SUCCESS
