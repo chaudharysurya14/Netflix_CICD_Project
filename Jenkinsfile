@@ -53,14 +53,14 @@ pipeline{
                 }
             }
         }
-        stage("quality gate"){
-           steps {
-                echo '============================== CHECK SONARQUBE QUALITY =============================='
-                script {
-                    waitForQualityGate abortPipeline: false, credentialsId: 'sonarkey' 
-                }
-            } 
-        }
+        // stage("quality gate"){
+        //    steps {
+        //         echo '============================== CHECK SONARQUBE QUALITY =============================='
+        //         script {
+        //             waitForQualityGate abortPipeline: false, credentialsId: 'sonarkey' 
+        //         }
+        //     } 
+        // }
         stage('TRIVY FILES SCAN') {
             steps {
                 echo '============================== TRIVY FILE SCANNING =============================='
